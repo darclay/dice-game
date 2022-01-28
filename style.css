@@ -78,13 +78,12 @@ h4 {
   width: 40%;
   border-radius: 10px;
 }
-/* .hidden {
-  display: none;
-} */
+
 .dice {
   position: absolute;
   display: flex;
   top: 25%;
+  left: 33.3333%;
 
 }
 .oneDot, .twoDot, .threeDot, .fourDot, .fiveDot, .sixDot {
@@ -102,9 +101,66 @@ height: 20px;
 width: 20px;
 border-radius: 50%;
 }
-.oneDot{}
-.twoDot{}
-.threeDot{}
-.fourDot{}
-.fiveDot{}
-.sixDot{}
+.oneDot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.twoDot {
+  position: relative;
+}
+.twoDot #twoOne {
+  position: absolute;
+  left: 10px;
+}
+.twoDot #twoTwo {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
+.threeDot {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.threeDot #threeOne {
+  position: absolute;
+  left: 10px;
+  top: -5px;
+}
+.threeDot #threeThree {
+  position: absolute;
+  right: 10px;
+  bottom: -5px;
+}
+.fourDot {
+  display: flex;
+  flex-wrap: wrap;
+}
+.fourDot p {
+ margin: 15px 0 0 20px;
+}
+.fiveDot {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+.fiveDot p {
+  margin: 15px 0 0 20px;
+}
+.fiveDot #fiveFive {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+}
+.sixDot {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sixDot p {
+ margin: 8px 0 0 20px;
+}
+/* .hidden {
+  display: none;
+} */
