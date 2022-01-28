@@ -8,21 +8,24 @@ function randoNum () {
 const rollDiceButton1 = document.querySelector('.roll1');
 rollDiceButton1.addEventListener('click', rollDice1);
 
-let current = 0;
+let current1 = 0;
 function rollDice1 () {
   let firstDice = randoNum()
   let secondDice = randoNum()
   if(firstDice === secondDice){
-    console.log("you rolled doubles");
-    console.log(current = 0);
-    document.querySelector(".p1ScoreCurrent").textContent = 0;
-    // return current = 0;
+    console.log("Player 1 rolled doubles");
+    current1 = 0;
+    document.querySelector(".p1ScoreCurrent").textContent = current1;
+    document.querySelector(".player-one-total-score").textContent = current1;
+    document.querySelector('.hold1').className = 'hold1 notActive';
+    document.querySelector('.hold2').className = 'hold2';
+    document.querySelector('.roll1').className = 'roll1 notActive';
+    document.querySelector('.roll2').className = 'roll2';
   }else {
-    console.log(`The current number is ${current}`)
-    current += firstDice + secondDice
-    document.querySelector(".p1ScoreCurrent").textContent = current;
-    console.log(current);
-    // return current;
+    console.log(`Player 1 current score before the roll was: ${current1}`)
+    current1 += firstDice + secondDice
+    document.querySelector(".p1ScoreCurrent").textContent = current1;
+    console.log(`Player 1 current score AFTER the roll is ${current1}`);
   }
 }
 //--------------------------------------------------------------------
@@ -35,14 +38,18 @@ function rollDice2 () {
   let secondDice = randoNum()
   if(firstDice === secondDice){
     console.log("you rolled doubles");
-    console.log(current2 = 0);
-    document.querySelector(".p2ScoreCurrent").textContent = 0;
-    // return current = 0;
+    current2 = 0;
+    document.querySelector(".p2ScoreCurrent").textContent = current2;
+    document.querySelector(".player-two-total-score").textContent = current2;
+    document.querySelector('.hold2').className = 'hold2 notActive';
+    document.querySelector('.hold1').className = 'hold1';
+    document.querySelector('.roll2').className = 'roll2 notActive';
+    document.querySelector('.roll1').className = 'roll1';
   }else {
+    console.log(`Player two current pior to roll is ${current2}`)
     current2 += firstDice + secondDice
     document.querySelector(".p2ScoreCurrent").textContent = current2;
-    console.log(current2);
-    // return current;
+    console.log(`Player 2 current after roll is ${current2}`);
   }
 }
 
@@ -52,16 +59,17 @@ document.querySelector('.hold1').addEventListener('click', hold1);
 function hold1 () {
   let a = Number(document.querySelector('.player-one-total-score').textContent);
   let b = Number(document.querySelector('.p1ScoreCurrent').textContent);
-  console.log(typeof a, a, typeof b, b)
+  console.log(a, b)
   let sum = a+b;
   document.querySelector('.player-one-total-score').textContent = sum;
-  document.querySelector(".p1ScoreCurrent").textContent = 0
+  document.querySelector(".p1ScoreCurrent").textContent = 0;
+  current1 = 0;
   document.querySelector('.hold1').className = 'hold1 notActive';
   document.querySelector('.hold2').className = 'hold2';
   document.querySelector('.roll1').className = 'roll1 notActive';
   document.querySelector('.roll2').className = 'roll2';
 }
-
+//---------------------------------------------------------------------------------
 document.querySelector('.hold2').addEventListener('click', hold2);
 function hold2 () {
   let a = Number(document.querySelector('.player-two-total-score').textContent);
@@ -70,6 +78,7 @@ function hold2 () {
   let sum = a+b;
   document.querySelector('.player-two-total-score').textContent = sum;
   document.querySelector(".p2ScoreCurrent").textContent = 0;
+  current2 = 0;
   document.querySelector('.hold2').className = 'hold2 notActive';
   document.querySelector('.hold1').className = 'hold1';
   document.querySelector('.roll2').className = 'roll2 notActive';
