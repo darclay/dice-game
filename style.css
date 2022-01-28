@@ -24,7 +24,6 @@ h4 {
   border-radius: 20px;
   margin: 10vh 0 10vh 0;
   box-shadow: 5px 5px 10px black, -5px -5px 10px black;
-  background-color: green;
 }
 .player1 {
   display: flex;
@@ -50,12 +49,12 @@ h4 {
   position: absolute;
   border-radius: 10px;
   background-color: #ffffffab;
-  /* opacity: .50; */
 }
 .newGame {
   top: 7%;
   width: 100px;
   left: calc(50% - 50px);
+  z-index: 100;
 }
 .roll1, .roll2 {
   top: 70%;
@@ -82,9 +81,10 @@ h4 {
 .dice {
   position: absolute;
   display: flex;
-  top: 25%;
-  left: 33.3333%;
-
+  height: 400px;
+  width: 850px;
+  align-items: center;
+  justify-content: center;
 }
 .oneDot, .twoDot, .threeDot, .fourDot, .fiveDot, .sixDot {
   background-color: white;
@@ -161,9 +161,10 @@ border-radius: 50%;
 .sixDot p {
  margin: 8px 0 0 20px;
 }
+.youRolledDoubles {
+  text-align: center;
+  padding: 20px 10px 20px 25px;
+}
 .hidden {
   display: none;
 } 
-.notActive {
-  display: none;
-}
