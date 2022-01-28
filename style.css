@@ -46,7 +46,7 @@ h4 {
   width: 50%;
   border-radius: 0 20px 20px 0;
 }
-.newGame, .rollDice, .hold {
+.newGame, .roll1, .roll2, .hold1, .hold2 {
   position: absolute;
   border-radius: 10px;
   background-color: #ffffffab;
@@ -57,12 +57,12 @@ h4 {
   width: 100px;
   left: calc(50% - 50px);
 }
-.rollDice {
+.roll1, .roll2 {
   top: 70%;
   width: 150px;
   left: calc(50% - 75px);
 }
-.hold {
+.hold1, .hold2 {
   top: 80%;
   width: 150px;
   left: calc(50% - 75px);
@@ -161,6 +161,9 @@ border-radius: 50%;
 .sixDot p {
  margin: 8px 0 0 20px;
 }
-/* .hidden {
+.hidden {
   display: none;
-} */
+} 
+.notActive {
+  display: none;
+}
