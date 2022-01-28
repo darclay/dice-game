@@ -1,3 +1,51 @@
+const die1 = document.querySelector('.oneDot');
+const die2 = document.querySelector('.twoDot');
+const die3 = document.querySelector('.threeDot');
+const die4 = document.querySelector('.fourDot');
+const die5 = document.querySelector('.fiveDot');
+const die6 = document.querySelector('.sixDot');
+function resetDice(){
+    die1.className = 'oneDot notActive';
+    die2.className = 'twoDot notActive';
+    die3.className = 'threeDot notActive';
+    die4.className = 'fourDot notActive';
+    die5.className = 'fiveDot notActive';
+    die6.className = 'sixDot notActive';
+}
+
+function showDi1(num1){
+  console.log(num1);
+  if (num1 == 1){
+      die1.className = "oneDot"
+  }else if (num1 == 2) {
+      die2.className = "twoDot"
+  }else if (num1 == 3) {
+      die3.className = "threeDot"
+  }else if (num1 == 4) {
+      die4.className = "fourDot"
+  }else if (num1 == 5) {
+      die5.className = "fiveDot"
+  }else if (num1 == 6) {
+      die6.className = "sixDot"    
+  }
+}
+function showDi2(num2){
+  console.log(num2);
+  if (num2 == 1){
+      die1.className = "oneDot"
+  }else if (num2 == 2) {
+      die2.className = "twoDot"
+  }else if (num2 == 3) {
+      die3.className = "threeDot"
+  }else if (num2 == 4) {
+      die4.className = "fourDot"
+  }else if (num2 == 5) {
+      die5.className = "fiveDot"
+  }else if (num2 == 6) {
+      die6.className = "sixDot"    
+  }
+}
+
 //create a function to pull a random Number
 function randoNum () {
   return Math.ceil(Math.random() * 6)
@@ -10,8 +58,11 @@ rollDiceButton1.addEventListener('click', rollDice1);
 
 let current1 = 0;
 function rollDice1 () {
-  let firstDice = randoNum()
-  let secondDice = randoNum()
+  resetDice();
+  let firstDice = randoNum();
+  let secondDice = randoNum();
+  showDi1(firstDice);
+  showDi2(secondDice);
   if(firstDice === secondDice){
     console.log("Player 1 rolled doubles");
     current1 = 0;
@@ -34,8 +85,11 @@ rollDiceButton2.addEventListener('click', rollDice2);
 
 let current2 = 0;
 function rollDice2 () {
+  resetDice();
   let firstDice = randoNum()
   let secondDice = randoNum()
+  showDi1(firstDice);
+  showDi2(secondDice);
   if(firstDice === secondDice){
     console.log("you rolled doubles");
     current2 = 0;
@@ -57,6 +111,7 @@ function rollDice2 () {
 //create a function HOLD to switch to player 2 or back to player 1
 document.querySelector('.hold1').addEventListener('click', hold1);
 function hold1 () {
+  resetDice();
   let a = Number(document.querySelector('.player-one-total-score').textContent);
   let b = Number(document.querySelector('.p1ScoreCurrent').textContent);
   console.log(a, b)
@@ -72,6 +127,7 @@ function hold1 () {
 //---------------------------------------------------------------------------------
 document.querySelector('.hold2').addEventListener('click', hold2);
 function hold2 () {
+  resetDice();
   let a = Number(document.querySelector('.player-two-total-score').textContent);
   let b = Number(document.querySelector('.p2ScoreCurrent').textContent);
   console.log(typeof a, a, typeof b, b)
@@ -86,12 +142,7 @@ function hold2 () {
 }
 //create another function SEE DICE to select dice from a random number
 //do this two times;
-const die1 = document.querySelector('.oneDot');
-const die2 = document.querySelector('.twoDot');
-const die3 = document.querySelector('.threeDot');
-const die4 = document.querySelector('.fourDot');
-const die5 = document.querySelector('.fiveDot');
-const die6 = document.querySelector('.sixDot');
+
 
 
 
