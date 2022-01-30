@@ -86,7 +86,6 @@ let current = 0;
 
 function rollDicePlayer1(){
   if(firstDice === secondDice){
-    console.log(`player 1 rolled doubles`);
     current = 0;
     document.querySelector(".p1ScoreCurrent").textContent = current;
     document.querySelector(".player-one-total-score").textContent = current;
@@ -123,7 +122,6 @@ holdButton.addEventListener('click', hold);
 function hold(){
   resetDice();
   if (player1.className === 'p1Turn active') {
-    console.log(`player1 chose hold`);
     let a = Number(document.querySelector('.player-one-total-score').textContent);
     let b = Number(document.querySelector('.p1ScoreCurrent').textContent);
     let sum = a+b;
@@ -133,7 +131,6 @@ function hold(){
     player1.className = 'p1Turn';
     player2.className = 'p2Turn active';
   }else if (player2.className === 'p2Turn active') {
-    console.log(`player2 chose hold`)
     let a = Number(document.querySelector('.player-two-total-score').textContent);
     let b = Number(document.querySelector('.p2ScoreCurrent').textContent);
     let sum = a+b;
