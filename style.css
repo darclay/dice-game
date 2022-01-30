@@ -45,7 +45,7 @@ h4 {
   width: 50%;
   border-radius: 0 20px 20px 0;
 }
-.newGame, .roll1, .roll2, .hold1, .hold2 {
+.newGame, .roll, .hold{
   position: absolute;
   border-radius: 10px;
   background-color: #ffffffab;
@@ -56,12 +56,12 @@ h4 {
   left: calc(50% - 50px);
   z-index: 100;
 }
-.roll1, .roll2 {
+.roll {
   top: 70%;
   width: 150px;
   left: calc(50% - 75px);
 }
-.hold1, .hold2 {
+.hold {
   top: 80%;
   width: 150px;
   left: calc(50% - 75px);
@@ -167,4 +167,11 @@ border-radius: 50%;
 }
 .hidden {
   display: none;
+}
+.active{
+  color: white;
+  text-shadow: 
+  0px 0px 5px gold,
+  5px 5px 5px purple;
+
 } 

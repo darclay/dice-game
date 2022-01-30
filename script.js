@@ -1,3 +1,4 @@
+//created variables for the querySelectors for the dice and player selection
 const die1 = document.querySelector('.oneDot');
 const die2 = document.querySelector('.twoDot');
 const die3 = document.querySelector('.threeDot');
@@ -5,7 +6,13 @@ const die4 = document.querySelector('.fourDot');
 const die5 = document.querySelector('.fiveDot');
 const die6 = document.querySelector('.sixDot');
 const doubles = document.querySelector('.youRolledDoubles');
+const player1 = document.querySelector('.p1Turn');
+const player2 = document.querySelector('.p2Turn');
+const rollDiceButton = document.querySelector('.roll');
+const holdButton = document.querySelector('.hold');
+const newGame = document.querySelector('.newGame')
 
+//The dice is hidden by default and is shown when a random number is selected.  This function resets the dice to be hidden.
 function resetDice(){
     die1.className = 'oneDot hidden';
     die2.className = 'twoDot hidden';
@@ -15,10 +22,17 @@ function resetDice(){
     die6.className = 'sixDot hidden';
     doubles.className = 'youRolledDoubles hidden';
 }
-//create another function SEE DICE to select dice from a random number
-//do this two times;
+
+//This function creates a random number
+function randoNum(){
+  return Math.ceil(Math.random() * 6)
+}
+
+//This function sets the two dice to the random number and then shows the dice based on the random numbers chosen.
+let firstDice;
+let secondDice;
+
 function showDi1(num1){
-  console.log(num1);
   if (num1 == 1){
       die1.className = "oneDot"
   }else if (num1 == 2) {
@@ -34,7 +48,6 @@ function showDi1(num1){
   }
 }
 function showDi2(num2){
-  console.log(num2);
   if (num2 == 1){
       die1.className = "oneDot"
   }else if (num2 == 2) {
@@ -50,122 +63,98 @@ function showDi2(num2){
   }
 }
 
-//create a function to pull a random Number
-function randoNum () {
-  return Math.ceil(Math.random() * 6)
+//This is the function which displays you rolled doubles
+function youRolledDoubles(){
+  doubles.className = 'youRolledDoubles'; 
 }
 
-//create a function ADDSCORES to add values together and display to add and display to CURRENT and then adds to player score
-//perhaps within the ADDSCORES is a conditional, if rolled valued is doubles then reset scores to "0";
-const rollDiceButton1 = document.querySelector('.roll1');
-rollDiceButton1.addEventListener('click', rollDice1);
-let current1 = 0;
+//This is the button click event which triggers the scores
+rollDiceButton.addEventListener('click', playerSelection);
 
-function rollDice1 () {
-  resetDice();
-  let firstDice = randoNum();
-  let secondDice = randoNum();
+function playerSelection(){
+  resetDice(); 
+  firstDice = randoNum();
+  secondDice =  randoNum();
+  if (player1.className == 'p1Turn active') {
+    rollDicePlayer1();
+  }else if (player2.className === 'p2Turn active') {
+    rollDicePlayer2();
+  } 
+}
+
+let current = 0;
+
+function rollDicePlayer1(){
   if(firstDice === secondDice){
-    console.log("Player 1 rolled doubles");
-    current1 = 0;
-    document.querySelector(".p1ScoreCurrent").textContent = current1;
-    document.querySelector(".player-one-total-score").textContent = current1;
-    document.querySelector('.hold1').className = 'hold1 hidden';
-    document.querySelector('.hold2').className = 'hold2';
-    document.querySelector('.roll1').className = 'roll1 hidden';
-    document.querySelector('.roll2').className = 'roll2';
-    document.querySelector('.youRolledDoubles').className = 'youRolledDoubles';  
+    console.log(`player 1 rolled doubles`);
+    current = 0;
+    document.querySelector(".p1ScoreCurrent").textContent = current;
+    document.querySelector(".player-one-total-score").textContent = current;
+    player1.className = 'p1Turn';
+    player2.className = 'p2Turn active';
+    youRolledDoubles();
   }else {
     showDi1(firstDice);
     showDi2(secondDice);
-    console.log(`Player 1 current score before the roll was: ${current1}`)
-    current1 += firstDice + secondDice
-    document.querySelector(".p1ScoreCurrent").textContent = current1;
-    console.log(`Player 1 current score AFTER the roll is ${current1}`);
+    current += firstDice + secondDice
+    document.querySelector(".p1ScoreCurrent").textContent = current;
   }
 }
-//--------------------------------------------------------------------
-const rollDiceButton2 = document.querySelector('.roll2');
-rollDiceButton2.addEventListener('click', rollDice2);
-let current2 = 0;
 
-function rollDice2 () {
-  resetDice();
-  let firstDice = randoNum()
-  let secondDice = randoNum()
-  
+function rollDicePlayer2(){
   if(firstDice === secondDice){
-    console.log("you rolled doubles");
-    current2 = 0;
-    document.querySelector(".p2ScoreCurrent").textContent = current2;
-    document.querySelector(".player-two-total-score").textContent = current2;
-    document.querySelector('.hold2').className = 'hold2 hidden';
-    document.querySelector('.hold1').className = 'hold1';
-    document.querySelector('.roll2').className = 'roll2 hidden';
-    document.querySelector('.roll1').className = 'roll1';
-    document.querySelector('.youRolledDoubles').className = 'youRolledDoubles';  
+    current = 0;
+    document.querySelector(".p2ScoreCurrent").textContent = current;
+    document.querySelector(".player-two-total-score").textContent = current;
+    player2.className = 'p2Turn';
+    player1.className = 'p1Turn active';
+    youRolledDoubles();
   }else {
     showDi1(firstDice);
     showDi2(secondDice);
-    console.log(`Player two current pior to roll is ${current2}`)
-    current2 += firstDice + secondDice
-    document.querySelector(".p2ScoreCurrent").textContent = current2;
-    console.log(`Player 2 current after roll is ${current2}`);
+    current += firstDice + secondDice
+    document.querySelector(".p2ScoreCurrent").textContent = current;
   }
 }
 
-//create a function HOLD to switch to player 2 or back to player 1
-document.querySelector('.hold1').addEventListener('click', hold1);
-function hold1 () {
+//The function HOLD is used to switch between players and hold score
+holdButton.addEventListener('click', hold);
+
+function hold(){
   resetDice();
-  let a = Number(document.querySelector('.player-one-total-score').textContent);
-  let b = Number(document.querySelector('.p1ScoreCurrent').textContent);
-  console.log(a, b)
-  let sum = a+b;
-  document.querySelector('.player-one-total-score').textContent = sum;
-  document.querySelector(".p1ScoreCurrent").textContent = 0;
-  current1 = 0;
-  document.querySelector('.hold1').className = 'hold1 hidden';
-  document.querySelector('.hold2').className = 'hold2';
-  document.querySelector('.roll1').className = 'roll1 hidden';
-  document.querySelector('.roll2').className = 'roll2';
-}
-//---------------------------------------------------------------------------------
-document.querySelector('.hold2').addEventListener('click', hold2);
-function hold2 () {
-  resetDice();
-  let a = Number(document.querySelector('.player-two-total-score').textContent);
-  let b = Number(document.querySelector('.p2ScoreCurrent').textContent);
-  console.log(typeof a, a, typeof b, b)
-  let sum = a+b;
-  document.querySelector('.player-two-total-score').textContent = sum;
-  document.querySelector(".p2ScoreCurrent").textContent = 0;
-  current2 = 0;
-  document.querySelector('.hold2').className = 'hold2 hidden';
-  document.querySelector('.hold1').className = 'hold1';
-  document.querySelector('.roll2').className = 'roll2 hidden';
-  document.querySelector('.roll1').className = 'roll1';
+  if (player1.className === 'p1Turn active') {
+    console.log(`player1 chose hold`);
+    let a = Number(document.querySelector('.player-one-total-score').textContent);
+    let b = Number(document.querySelector('.p1ScoreCurrent').textContent);
+    let sum = a+b;
+    document.querySelector('.player-one-total-score').textContent = sum;
+    document.querySelector(".p1ScoreCurrent").textContent = 0;
+    current = 0;
+    player1.className = 'p1Turn';
+    player2.className = 'p2Turn active';
+  }else if (player2.className === 'p2Turn active') {
+    console.log(`player2 chose hold`)
+    let a = Number(document.querySelector('.player-two-total-score').textContent);
+    let b = Number(document.querySelector('.p2ScoreCurrent').textContent);
+    let sum = a+b;
+    document.querySelector('.player-two-total-score').textContent = sum;
+    document.querySelector(".p2ScoreCurrent").textContent = 0;
+    current = 0;
+    player1.className = 'p1Turn active';
+    player2.className = 'p2Turn';
+  }
 }
 
 //This is the function for reseting the game.
-const newG = document.querySelector('.newGame')
-function handleClick(){
+newGame.addEventListener('click', chooseNewGame);
+
+function chooseNewGame(){
   resetDice();
-  
-  current1 = 0;
-  document.querySelector(".p1ScoreCurrent").textContent = current1;
-  document.querySelector(".player-one-total-score").textContent = current1;
-
-  current2 = 0;
-  document.querySelector(".p2ScoreCurrent").textContent = current2;
-  document.querySelector(".player-two-total-score").textContent = current2;
+  current = 0;
+  document.querySelector(".p1ScoreCurrent").textContent = current;
+  document.querySelector(".player-one-total-score").textContent = current;
+  document.querySelector(".p2ScoreCurrent").textContent = current;
+  document.querySelector(".player-two-total-score").textContent = current;
+  player1.className = 'p1Turn active';
+  player2.className = 'p2Turn';
 }
-newG.addEventListener('click', handleClick);
-
-
-
-
-
-
-
-
