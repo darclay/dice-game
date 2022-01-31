@@ -3,8 +3,20 @@
   <head>
     <title>Dice Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet">
   </head>
   <body>
+    <main>
+    <div class="modal">
+      <button class="modalClose">close</button>
+      <h1>Lucky Roll of the Dice</h1>
+      <p>Welcome to "Lucky Roll of the Dice".<br/>This is a two player game.  Here are the rules: Player 1 starts by rolling the dice.  The total will be added to the bottom box for each roll.  If player 1 chooses, they can select "hold" which will lock in their points and give the next player a chance.  First person to 100pts wins!  Sounds easy right, well... if you roll doubles, you go back to zero and it is the next person's turn. <br/>Good Luck!</p>
+    </div>  
+    <div class="blurredBackground"></div>
+  
+    <h1>Lucky Roll of the Dice</h1>
     <div class="container">
       <button class="newGame">NEW GAME</button>
       <div class="dice">
@@ -40,5 +52,24 @@
       </div>
     </div>
     <script src="script.js" defer></script>
+    <footer>
+      <ul class="footerContainer">
+        <li>
+          <a href="https://www.linkedin.com/in/david-gurule-865624212/"
+          target="_blank">
+          -created by: David Gurule - 2022-
+          </a>
+        </li>
+        <li class="instructions">
+          -instructions-
+        </li>
+        <li>
+          <a href="http://www.david-barclay-gurule.com" target="_blank">
+            -www.david-barclay-gurule.com-
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </main>
   </body>
 </html>

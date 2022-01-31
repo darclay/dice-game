@@ -17,6 +17,26 @@ const holdButton = document.querySelector('.hold');
 const newGame = document.querySelector('.newGame');
 const youWin = document.querySelector('.youWin');
 const winner = document.querySelector('.winner');
+const modalClose = document.querySelector('.modalClose');
+const modal = document.querySelector('.modal');
+const blur = document.querySelector('.blurredBackground');
+const instructions = document.querySelector('.instructions');
+
+function toggleModal(status){
+  console.log(status);
+  if(status === 'hide'){
+    modal.className = 'hidden';
+    blur.className = 'hidden';
+  }else if (status === 'show'){
+    modal.className = 'modal';
+    blur.className = 'blurredBackground';
+  }
+}
+
+modalClose.addEventListener('click', ()=>toggleModal('hide'));
+
+instructions.addEventListener('click', ()=>toggleModal('show'));
+
 
 //The dice is hidden by default and is shown when a random number is selected.  This function resets the dice to be hidden.
 function resetDice(){
