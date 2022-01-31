@@ -70,7 +70,7 @@ function showDi1(num1){
   }else if (num1 == 5) {
       die5.className = "fiveDot"
   }else if (num1 == 6) {
-      die6.className = "sixDot"    
+      die6.className = "sixDot"
   }
 }
 function showDi2(num2){
@@ -85,13 +85,13 @@ function showDi2(num2){
   }else if (num2 == 5) {
       die5.className = "fiveDot"
   }else if (num2 == 6) {
-      die6.className = "sixDot"    
+      die6.className = "sixDot"
   }
 }
 
 //This is the function which displays you rolled doubles
 function youRolledDoubles(){
-  doubles.className = 'youRolledDoubles'; 
+  doubles.className = 'youRolledDoubles';
 }
 
 //This is the function to display who wins and to lock the 'roll dice' and 'hold' buttons.
@@ -109,14 +109,14 @@ function playerWins(player){
 rollDiceButton.addEventListener('click', playerSelection);
 
 function playerSelection(){
-  resetDice(); 
+  resetDice();
   firstDice = randoNum();
   secondDice =  randoNum();
   if (player1.className == 'p1Turn active') {
     rollDicePlayer1();
   }else if (player2.className == 'p2Turn active') {
     rollDicePlayer2();
-  } 
+  }
 }
 
 let current = 0;
@@ -167,7 +167,7 @@ function hold(){
     current = 0;
     player1.className = 'p1Turn';
     player2.className = 'p2Turn active';
-    if (Number(p1TotalScore.textContent) >= 20) playerWins('#1');
+    if (Number(p1TotalScore.textContent) >= 100) playerWins('#1');
 
   }else if (player2.className === 'p2Turn active') {
     let a = Number(p2TotalScore.textContent);
@@ -178,7 +178,7 @@ function hold(){
     current = 0;
     player1.className = 'p1Turn active';
     player2.className = 'p2Turn';
-    if (Number(p2TotalScore.textContent) >= 20) playerWins('#2');
+    if (Number(p2TotalScore.textContent) >= 100) playerWins('#2');
 }}
 
 //This is the function for reseting the game.
