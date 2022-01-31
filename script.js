@@ -11,6 +11,7 @@ const player2 = document.querySelector('.p2Turn');
 const p1TotalScore = document.querySelector(".player-one-total-score");
 const p2TotalScore = document.querySelector('.player-two-total-score');
 const p1CurrentScore = document.querySelector(".p1ScoreCurrent");
+const p2CurrentScore = document.querySelector(".p2ScoreCurrent")
 const rollDiceButton = document.querySelector('.roll');
 const holdButton = document.querySelector('.hold');
 const newGame = document.querySelector('.newGame');
@@ -79,6 +80,8 @@ function playerWins(player){
   holdButton.className = 'hidden';
   winner.textContent = player;
   youWin.className = 'youWin';
+  player1.className = 'p1Turn';
+  player2.className = 'p2Turn';
 }
 
 
@@ -91,7 +94,7 @@ function playerSelection(){
   secondDice =  randoNum();
   if (player1.className == 'p1Turn active') {
     rollDicePlayer1();
-  }else if (player2.className === 'p2Turn active') {
+  }else if (player2.className == 'p2Turn active') {
     rollDicePlayer2();
   } 
 }
@@ -117,7 +120,7 @@ function rollDicePlayer1(){
 function rollDicePlayer2(){
   if(firstDice === secondDice){
     current = 0;
-    document.querySelector(".p2ScoreCurrent").textContent = current;
+    p2CurrentScore.textContent = current;
     p2TotalScore.textContent = current;
     player2.className = 'p2Turn';
     player1.className = 'p1Turn active';
@@ -126,7 +129,7 @@ function rollDicePlayer2(){
     showDi1(firstDice);
     showDi2(secondDice);
     current += firstDice + secondDice
-    document.querySelector(".p2ScoreCurrent").textContent = current;
+    p2CurrentScore.textContent = current;
   }
 }
 
@@ -142,21 +145,21 @@ function hold(){
     p1TotalScore.textContent = sum;
     p1CurrentScore.textContent = 0;
     current = 0;
-    if (p1TotalScore >= 100) playerWins('#1');
     player1.className = 'p1Turn';
     player2.className = 'p2Turn active';
+    if (Number(p1TotalScore.textContent) >= 20) playerWins('#1');
+
   }else if (player2.className === 'p2Turn active') {
     let a = Number(p2TotalScore.textContent);
-    let b = Number(document.querySelector('.p2ScoreCurrent').textContent);
+    let b = Number(p2CurrentScore.textContent);
     let sum = a+b;
     p2TotalScore.textContent = sum;
-    document.querySelector(".p2ScoreCurrent").textContent = 0;
+    p2CurrentScore.textContent = 0;
     current = 0;
-    if (p2TotalScore >= 100) playerWins('#2');
     player1.className = 'p1Turn active';
     player2.className = 'p2Turn';
-  }
-}
+    if (Number(p2TotalScore.textContent) >= 20) playerWins('#2');
+}}
 
 //This is the function for reseting the game.
 newGame.addEventListener('click', chooseNewGame);
@@ -166,8 +169,11 @@ function chooseNewGame(){
   current = 0;
   p1CurrentScore.textContent = current;
   p1TotalScore.textContent = current;
-  document.querySelector(".p2ScoreCurrent").textContent = current;
+  p2CurrentScore.textContent = current;
   p2TotalScore.textContent = current;
   player1.className = 'p1Turn active';
   player2.className = 'p2Turn';
+  rollDiceButton.className = 'roll';
+  holdButton.className = 'hold';
+  youWin.className = 'youWin hidden';
 }
