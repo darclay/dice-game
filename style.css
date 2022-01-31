@@ -228,3 +228,12 @@ border-radius: 50%;
   text-decoration: none;
   color: black;
 }
+.footerContainer li a:hover {
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(255, 255, 255);
+}
+.instructions:hover {
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgb(255, 255, 255);
+  cursor: pointer;
+}
