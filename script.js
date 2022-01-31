@@ -8,9 +8,14 @@ const die6 = document.querySelector('.sixDot');
 const doubles = document.querySelector('.youRolledDoubles');
 const player1 = document.querySelector('.p1Turn');
 const player2 = document.querySelector('.p2Turn');
+const p1TotalScore = document.querySelector(".player-one-total-score");
+const p2TotalScore = document.querySelector('.player-two-total-score');
+const p1CurrentScore = document.querySelector(".p1ScoreCurrent");
 const rollDiceButton = document.querySelector('.roll');
 const holdButton = document.querySelector('.hold');
-const newGame = document.querySelector('.newGame')
+const newGame = document.querySelector('.newGame');
+const youWin = document.querySelector('.youWin');
+const winner = document.querySelector('.winner');
 
 //The dice is hidden by default and is shown when a random number is selected.  This function resets the dice to be hidden.
 function resetDice(){
@@ -68,6 +73,15 @@ function youRolledDoubles(){
   doubles.className = 'youRolledDoubles'; 
 }
 
+//This is the function to display who wins and to lock the 'roll dice' and 'hold' buttons.
+function playerWins(player){
+  rollDiceButton.className = 'hidden';
+  holdButton.className = 'hidden';
+  winner.textContent = player;
+  youWin.className = 'youWin';
+}
+
+
 //This is the button click event which triggers the scores
 rollDiceButton.addEventListener('click', playerSelection);
 
@@ -87,8 +101,8 @@ let current = 0;
 function rollDicePlayer1(){
   if(firstDice === secondDice){
     current = 0;
-    document.querySelector(".p1ScoreCurrent").textContent = current;
-    document.querySelector(".player-one-total-score").textContent = current;
+    p1CurrentScore.textContent = current;
+    p1TotalScore.textContent = current;
     player1.className = 'p1Turn';
     player2.className = 'p2Turn active';
     youRolledDoubles();
@@ -96,7 +110,7 @@ function rollDicePlayer1(){
     showDi1(firstDice);
     showDi2(secondDice);
     current += firstDice + secondDice
-    document.querySelector(".p1ScoreCurrent").textContent = current;
+    p1CurrentScore.textContent = current;
   }
 }
 
@@ -104,7 +118,7 @@ function rollDicePlayer2(){
   if(firstDice === secondDice){
     current = 0;
     document.querySelector(".p2ScoreCurrent").textContent = current;
-    document.querySelector(".player-two-total-score").textContent = current;
+    p2TotalScore.textContent = current;
     player2.className = 'p2Turn';
     player1.className = 'p1Turn active';
     youRolledDoubles();
@@ -122,21 +136,23 @@ holdButton.addEventListener('click', hold);
 function hold(){
   resetDice();
   if (player1.className === 'p1Turn active') {
-    let a = Number(document.querySelector('.player-one-total-score').textContent);
-    let b = Number(document.querySelector('.p1ScoreCurrent').textContent);
+    let a = Number(p1TotalScore.textContent);
+    let b = Number(p1CurrentScore.textContent);
     let sum = a+b;
-    document.querySelector('.player-one-total-score').textContent = sum;
-    document.querySelector(".p1ScoreCurrent").textContent = 0;
+    p1TotalScore.textContent = sum;
+    p1CurrentScore.textContent = 0;
     current = 0;
+    if (p1TotalScore >= 100) playerWins('#1');
     player1.className = 'p1Turn';
     player2.className = 'p2Turn active';
   }else if (player2.className === 'p2Turn active') {
-    let a = Number(document.querySelector('.player-two-total-score').textContent);
+    let a = Number(p2TotalScore.textContent);
     let b = Number(document.querySelector('.p2ScoreCurrent').textContent);
     let sum = a+b;
-    document.querySelector('.player-two-total-score').textContent = sum;
+    p2TotalScore.textContent = sum;
     document.querySelector(".p2ScoreCurrent").textContent = 0;
     current = 0;
+    if (p2TotalScore >= 100) playerWins('#2');
     player1.className = 'p1Turn active';
     player2.className = 'p2Turn';
   }
@@ -148,10 +164,10 @@ newGame.addEventListener('click', chooseNewGame);
 function chooseNewGame(){
   resetDice();
   current = 0;
-  document.querySelector(".p1ScoreCurrent").textContent = current;
-  document.querySelector(".player-one-total-score").textContent = current;
+  p1CurrentScore.textContent = current;
+  p1TotalScore.textContent = current;
   document.querySelector(".p2ScoreCurrent").textContent = current;
-  document.querySelector(".player-two-total-score").textContent = current;
+  p2TotalScore.textContent = current;
   player1.className = 'p1Turn active';
   player2.className = 'p2Turn';
 }
